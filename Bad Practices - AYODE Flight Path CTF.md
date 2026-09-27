@@ -84,3 +84,21 @@ Testing this on some files, it seems that 7zip automatically defaults to this 0-
 (P.S, looking at the flag I may have overcomplicated it, but still nice to learn something new!)
 
 Pretty nice challenge! (also my first writeup) :)
+
+## The intended solution
+
+since the flag was `r34d_th3_c0mm3nt_f13ld`, I went to look at the comment field
+
+`zipinfo -z maintenance.zip` (on linux)
+
+gave me:
+
+> [SkyTrack Flight Support - Maintenance Division Hangar 4]
+> Shift Handover Memo:
+> Archive locked per ground safety compliance protocol.
+> Emergency technician recovery code: h4ng4r_m41nt_cl34r4nc3!
+> Note: All technician passphrases must be normalized to standard English lowercase (replace leetspeak 4->a, 1->i, 3->e) before entering into the maintenance console.
+
+so that was a lot simpler...
+
+i input `hangar_maint_clearance!` as the password to the archive and it unlocked... whoops :)
