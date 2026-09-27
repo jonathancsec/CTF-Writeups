@@ -68,13 +68,16 @@ After decrypting the file, I extracted the contents and found the flag! :D
 flightPath{r34d_th3_c0mm3nt_f13ld}
 ```
 
-## Takeaways
-
+## Stuff I learned!
 A cool thing I learned from this chall was that ZipCrypto encrypted Zip files were vulnerable to a **known-plaintext attack**
 
 It was important that the archive used **legacy ZipCrypto** to encrypt and I knew part of the plaintext (`flightPath{`)
 
 Using bkcrack, this made the ZIP password itself unnecessary to recover.
+
+If you know a specific filetype in the zip file, you can easily use that file header to crack the zip!
+
+Testing this on some files, it seems that 7zip automatically defaults to this 0-0 (something I will note in the future)
 
 (P.S, looking at the flag I may have overcomplicated it, but still nice to learn something new!)
 
