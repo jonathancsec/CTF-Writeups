@@ -1,22 +1,30 @@
+
 # Bad Practices
 
 ## Challenge Description
 
-`During a routine security audit of the SkyTrack ground terminal, the security team flagged an encrypted archive left behind by the aircraft maintenance crew.
+> During a routine security audit of the SkyTrack ground terminal, the
+> security team flagged an encrypted archive left behind by the aircraft
+> maintenance crew.
+> 
+> The file is locked tight with password protection, and the crew left
+> no notes on their desk. Good luck getting into it.
+> 
+> Download maintenance.zip to begin the investigation.
 
-The file is locked tight with password protection, and the crew left no notes on their desk. Good luck getting into it.
+I was given a password-protected ZIP archive named `maintenance.zip`, which was password protected...
 
-Download maintenance.zip to begin the investigation. `
+!(https://gcdnb.pbrd.co/images/J3yb4bdENecs.png)
 
-We were given a password-protected ZIP archive named `maintenance.zip`.
+## First Steps
 
-The goal was to recover the contents of the archive and obtain the flag.
+Not gonna lie, I didn't really know what the description was talking about or if it could've helped me on this challenge
 
-## Identifying the Encryption
+I originally thought you had to brute force the password by using tools like hashcat or john, but I tried a bunch of wordlists and it gave no results
 
-First, I checked the ZIP file and noticed that it was using **legacy ZipCrypto encryption** rather than modern AES encryption.
+After some research, I found that legacy ZipCrypto encryption of zip files were vulnerable to **known-plaintext attack**
 
-This was important because ZipCrypto has known weaknesses that allow a **known-plaintext attack**.
+I checked the given ZIP file and low and behold, it was encrypted with **ZipCrypto** rather than modern AES encryption.
 
 I also had some information about the flag format: I knew the flag started with:
 
@@ -28,13 +36,15 @@ This gave me known plaintext that could be used to attack the encrypted file.
 
 ## Using bkcrack
 
-I used [`bkcrack`](https://github.com/kimci86/bkcrack), a tool designed to exploit weaknesses in legacy ZIP encryption.
+I used the tool [`bkcrack`](https://github.com/kimci86/bkcrack), to exploit the vulnerability.
 
 Since I knew the beginning of the plaintext, I could use it as the known plaintext for the attack.
 
 I first ran `bkcrack` against the encrypted ZIP using the known `flightPath{` bytes.
 
-The attack successfully recovered the internal ZipCrypto keys:
+    bkcrack.exe -C maintenance.zip -c flag.txt -x 0 666C69676874506174687B
+
+After around 10 minutes the attack successfully recovered the internal ZipCrypto keys:
 
 ```text
 e0db5ef8 eef6fd48 d9490129
@@ -46,23 +56,22 @@ These are the three 32-bit internal keys used by ZipCrypto.
 
 With the recovered keys, I could then use `bkcrack` to decrypt the archive.
 
-After decrypting the file, I extracted the contents and found the flag.
+    bkcrack.exe -C maintenance.zip -k e0db5ef8 eef6fd48 d9490129 -D decrypted.zip
+
+After decrypting the file, I extracted the contents and found the flag! :D
 
 ## Flag
 
 ```text
-flightPath{...}
+flightPath{r34d_th3_c0mm3nt_f13ld}
 ```
 
 ## Takeaways
 
-The important part of this challenge was recognizing that **ZipCrypto is vulnerable to known-plaintext attacks**.
+A cool thing I learned from this chall was that ZipCrypto encrypted Zip files were vulnerable to a **known-plaintext attack**
 
-The key pieces of information were:
+It was important that the archive used **legacy ZipCrypto** to encrypt and I knew part of the plaintext (`flightPath{}`)
 
-* The archive used **legacy ZipCrypto**
-* I knew part of the plaintext (`flightPath{`)
-* `bkcrack` can recover the internal ZipCrypto keys from known plaintext
-* The recovered keys can then be used to decrypt the archive
+Using bkcrack, this made the ZIP password itself unnecessary to recover.
 
-This made the ZIP password itself unnecessary to recover.
+Pretty nice challenge and tought me a cool thing :)
