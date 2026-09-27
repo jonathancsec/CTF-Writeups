@@ -12,7 +12,7 @@
 > 
 > Download maintenance.zip to begin the investigation.
 
-I was given a password-protected ZIP archive named `maintenance.zip`, which was password protected...
+I was given a ZIP archive named `maintenance.zip`, which was password protected...
 
 ![](https://gcdnb.pbrd.co/images/J3yb4bdENecs.png)
 
