@@ -89,7 +89,8 @@ Pretty nice challenge! (also my first writeup) :)
 
 since the flag was `r34d_th3_c0mm3nt_f13ld`, I went to look at the comment field
 
-`zipinfo -z maintenance.zip` (on linux)
+    zipinfo -z maintenance.zip 
+(on linux)
 
 gave me:
 
