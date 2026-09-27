@@ -70,8 +70,10 @@ flightPath{r34d_th3_c0mm3nt_f13ld}
 
 A cool thing I learned from this chall was that ZipCrypto encrypted Zip files were vulnerable to a **known-plaintext attack**
 
-It was important that the archive used **legacy ZipCrypto** to encrypt and I knew part of the plaintext (`flightPath{}`)
+It was important that the archive used **legacy ZipCrypto** to encrypt and I knew part of the plaintext (`flightPath{`)
 
 Using bkcrack, this made the ZIP password itself unnecessary to recover.
 
-Pretty nice challenge and tought me a cool thing :)
+(P.S, looking at the flag I may have overcomplicated it, but still nice to learn something new!)
+
+Pretty nice challenge! (also my first writup) :)
