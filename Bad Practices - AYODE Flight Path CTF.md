@@ -14,7 +14,7 @@
 
 I was given a password-protected ZIP archive named `maintenance.zip`, which was password protected...
 
-!(https://gcdnb.pbrd.co/images/J3yb4bdENecs.png)
+![](https://gcdnb.pbrd.co/images/J3yb4bdENecs.png)
 
 ## First Steps
 
