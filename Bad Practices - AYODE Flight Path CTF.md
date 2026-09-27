@@ -42,7 +42,7 @@ I used the tool [`bkcrack`](https://github.com/kimci86/bkcrack), to exploit the 
 
 Since I knew the beginning of the plaintext, I could use it as the known plaintext for the attack.
 
-I first ran `bkcrack` against the encrypted ZIP using the known `flightPath{` bytes.
+I first ran `bkcrack` against the encrypted ZIP using the known `flightPath{` bytes. (i'm on windows)
 
     bkcrack.exe -C maintenance.zip -c flag.txt -x 0 666C69676874506174687B
 
