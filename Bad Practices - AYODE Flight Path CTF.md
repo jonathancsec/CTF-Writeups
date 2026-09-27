@@ -24,7 +24,9 @@ I originally thought you had to brute force the password by using tools like has
 
 After some research, I found that legacy ZipCrypto encryption of zip files were vulnerable to **known-plaintext attack**
 
-I checked the given ZIP file and lo and behold, it was encrypted with **ZipCrypto** rather than modern AES encryption.
+I used 7zip to check the encryption on the given ZIP file and lo and behold, it was encrypted with **ZipCrypto** rather than modern AES encryption.
+
+![](https://img2link.epictech29999.workers.dev/image/c2b98fqw568zf77arz7lp9/0)
 
 I also had some information about the flag format: I knew the flag started with:
 
