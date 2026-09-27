@@ -24,7 +24,7 @@ I originally thought you had to brute force the password by using tools like has
 
 After some research, I found that legacy ZipCrypto encryption of zip files were vulnerable to **known-plaintext attack**
 
-I checked the given ZIP file and low and behold, it was encrypted with **ZipCrypto** rather than modern AES encryption.
+I checked the given ZIP file and lo and behold, it was encrypted with **ZipCrypto** rather than modern AES encryption.
 
 I also had some information about the flag format: I knew the flag started with:
 
@@ -43,6 +43,8 @@ Since I knew the beginning of the plaintext, I could use it as the known plainte
 I first ran `bkcrack` against the encrypted ZIP using the known `flightPath{` bytes.
 
     bkcrack.exe -C maintenance.zip -c flag.txt -x 0 666C69676874506174687B
+
+(`666C69676874506174687B` is `flightPath{` in bytes)
 
 After around 10 minutes the attack successfully recovered the internal ZipCrypto keys:
 
