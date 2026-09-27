@@ -83,4 +83,4 @@ Testing this on some files, it seems that 7zip automatically defaults to this 0-
 
 (P.S, looking at the flag I may have overcomplicated it, but still nice to learn something new!)
 
-Pretty nice challenge! (also my first writup) :)
+Pretty nice challenge! (also my first writeup) :)
